@@ -1,0 +1,68 @@
+@if(user){
+<div class="user-card">
+  <div class="main-info">
+    <div>
+      <p>
+        Name:
+        <span class="important-info"
+          >{{ user.name.title }} {{ user.name.first }}
+          {{ user.name.last }}</span
+        >
+      </p>
+      <p>
+        Gender: <span class="important-info">{{ user.gender }}</span>
+      </p>
+    </div>
+    <img
+      class="card-image"
+      [ngSrc]="user.picture.medium"
+      alt="logo"
+      width="72"
+      height="72"
+    />
+  </div>
+  <div>
+    <p class="m-0">
+      Email: <span class="important-info">{{ user.email }}</span>
+    </p>
+    <p>
+      Location:
+      <span class="important-info">
+        {{ user.location.country }}, {{ user.location.city }},
+        {{ user.location.street.name }} {{ user.location.street.number }}
+      </span>
+    </p>
+  </div>
+
+  <div>
+    @if(userWeatherInfo ){
+    <p class="current-temperature">
+      <span>
+        Current temperature
+        <span class="important-info">{{ temperature }}</span>
+      </span>
+      @if(weather){
+      <fa-icon [icon]="weather"></fa-icon>
+      }
+    </p>
+    <p class="m-0">Temparature per day:</p>
+    <div class="max-min-temperature">
+      <p>
+        Min:
+        <span class="important-info">{{ minTemperature }}</span>
+      </p>
+      <p>
+        Max:
+        <span class="important-info">{{ maxTemperature }}</span>
+      </p>
+    </div>
+
+    }
+  </div>
+  @if(!buttonDisabled){
+  <div class="button-block">
+    <button class="add-users" (click)="saveUser(user)">add</button>
+  </div>
+  }
+</div>
+}

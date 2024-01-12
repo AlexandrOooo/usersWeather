@@ -1,0 +1,11 @@
+.user-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+}
+@media screen and (max-width: 1120px) {
+  .user-list {
+    justify-content: space-around;
+  }
+}

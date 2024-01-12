@@ -1,0 +1,48 @@
+.user-card {
+  width: 300px;
+  border: 1px solid white;
+  border-radius: 50px;
+  padding: 20px;
+  background-color: black;
+  color: white;
+  position: relative;
+}
+.main-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.card-image {
+  border-radius: 50%;
+  overflow: hidden;
+}
+.important-info {
+  color: aqua;
+  font-weight: 900;
+}
+.current-temperature {
+  display: flex;
+  justify-content: space-between;
+}
+.max-min-temperature {
+  display: flex;
+  justify-content: space-between;
+}
+.m-0 {
+  margin: 0;
+}
+.button-block {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+.add-users {
+  background-color: aqua;
+  color: rgb(15, 6, 6);
+  padding: 10px 80px;
+  border: none;
+  border-radius: 10px;
+  text-transform: uppercase;
+  font-weight: 700;
+  cursor: pointer;
+}

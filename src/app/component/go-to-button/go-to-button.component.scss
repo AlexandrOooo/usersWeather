@@ -1,0 +1,17 @@
+.goToButton {
+  color: darkmagenta;
+  text-transform: uppercase;
+  background-color: chartreuse;
+  font-size: 30px;
+  padding: 30px 70px;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 10px;
+  display: inline-block;
+}
+@media screen and (max-width: 768px) {
+  .goToButton {
+    font-size: 24px;
+    padding: 15px 30px;
+  }
+}

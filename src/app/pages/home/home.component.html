@@ -1,0 +1,7 @@
+<app-go-to-button
+  [goToAddress]="SAVED_USERS_PAGE_URL"
+  text="Go to saved users"
+></app-go-to-button>
+@if(users$ | async; as users ){
+<app-user-list [users]="users.results"></app-user-list>
+}

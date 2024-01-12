@@ -1,0 +1,10 @@
+@if(users && users.length){
+<div class="user-list">
+  @for(user of users; track user.email){
+  <app-user-card
+    [user]="user"
+    [buttonDisabled]="buttonsDisabled"
+  ></app-user-card>
+  }
+</div>
+}
