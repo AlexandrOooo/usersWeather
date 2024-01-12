@@ -1,13 +1,20 @@
 import { NgOptimizedImage } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { Icon, User, UserWeatherInfo } from '../../types/user.interface';
+import {
+  HourlyWeather,
+  User,
+  UserWeatherInfo,
+} from '../../types/user.interface';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { WeatherService } from '../../services/weather.service';
+import { interval } from 'rxjs';
+import { HourlyWeatherListComponent } from '../hourly-weather-list/hourly-weather-list.component';
 
 @Component({
   selector: 'app-user-card',
   standalone: true,
-  imports: [NgOptimizedImage, FontAwesomeModule],
+  imports: [NgOptimizedImage, FontAwesomeModule, HourlyWeatherListComponent],
   templateUrl: './user-card.component.html',
   styleUrl: './user-card.component.scss',
 })
@@ -19,7 +26,8 @@ export class UserCardComponent {
   minTemperature?: string;
   maxTemperature?: string;
   userWeatherInfo?: UserWeatherInfo;
-  weather?: Icon;
+  weather?: IconDefinition;
+  hourlyWeather!: HourlyWeather;
 
   saveUser(user: User): void {
     const users = JSON.parse(localStorage.getItem('users') ?? '[]') as User[];
@@ -33,6 +41,11 @@ export class UserCardComponent {
   constructor(private weatherService: WeatherService) {}
 
   ngOnInit(): void {
+    this.setWeather();
+    const weatherUpdateInterval = interval(300000);
+    weatherUpdateInterval.subscribe(() => this.setWeather());
+  }
+  setWeather() {
     if (this.user) {
       this.weatherService
         .getUserWeather(
@@ -66,6 +79,11 @@ export class UserCardComponent {
 
           this.weather = this.weatherService.convertCodeToWeather(
             userWeather.current_weather.weathercode
+          );
+
+          this.hourlyWeather = this.weatherService.createHourlyWeather(
+            userWeather.hourly.time,
+            userWeather.hourly.temperature_2m
           );
         });
     }

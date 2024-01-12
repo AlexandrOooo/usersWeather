@@ -94,4 +94,8 @@ export interface UserWeatherInfo {
     temperature_2m: number[];
   };
 }
-export type Icon = typeof faSun;
+export interface HourWeather {
+  date: string;
+  temperature: number;
+}
+export type HourlyWeather = HourWeather[];

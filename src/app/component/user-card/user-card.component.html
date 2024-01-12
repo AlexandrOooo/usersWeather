@@ -56,7 +56,7 @@
         <span class="important-info">{{ maxTemperature }}</span>
       </p>
     </div>
-
+    <app-hourly-weather-list [hourlyWeatherList]="hourlyWeather" />
     }
   </div>
   @if(!buttonDisabled){

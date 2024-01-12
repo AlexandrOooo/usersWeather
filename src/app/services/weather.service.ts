@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Icon, UserWeatherInfo } from '../types/user.interface';
+import { UserWeatherInfo } from '../types/user.interface';
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import {
   faCloud,
   faSun,
@@ -37,7 +38,7 @@ export class WeatherService {
   maxTemperaturePerDay(weatherTemperature: number[]): number {
     return Math.max(...weatherTemperature.slice(0, 24));
   }
-  convertCodeToWeather(code: number): Icon {
+  convertCodeToWeather(code: number): IconDefinition {
     if (this.determWeather(code, RAIN_CODES)) {
       return faUmbrella;
     } else if (this.determWeather(code, FOG_CODES)) {
@@ -57,5 +58,15 @@ export class WeatherService {
   }
   formatTemperature(temperature: number, scale: string) {
     return `${temperature} ${scale}`;
+  }
+  createHourlyWeather(date: string[] = [], temperature: number[] = []) {
+    const hourlyWeathers = [];
+    for (let i = 0; i <= 23; i++) {
+      hourlyWeathers.push({
+        date: date[i].split('T')[1],
+        temperature: temperature[i],
+      });
+    }
+    return hourlyWeathers;
   }
 }

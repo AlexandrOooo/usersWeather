@@ -1,0 +1,19 @@
+@if(hourlyWeatherList.length && hourlyWeatherList) {
+<div class="hourlyWeatherBlock">
+  @if(isShowTemperature){
+  <div class="hourlyWeather">
+    @for(hourWeather of hourlyWeatherList; track hourWeather.date){
+    <div class="hourWeather">
+      <p class="hour">{{ hourWeather.date }}</p>
+      <p class="temperature">{{ hourWeather.temperature }}</p>
+    </div>
+
+    }
+  </div>
+  }@else{
+  <button class="showWeatherButton" (click)="showTemperature()">
+    Show hourly weather for today
+  </button>
+  }
+</div>
+}
